@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: rgb(253, 255, 147);
+}
+
+html {
+    font-family: 'Lato';
+}
+
+.main {
+    margin: 20px auto;
+    max-width: 1100px;
+    background-color: white;
+    padding: 0 2%;
+}
+
+.main h2 {
+    text-align: center;
+    color: #ef5350;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.main input {
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+}
+
+.main input:focus {
+    outline: 0;
+}
+
+.pokemon-boxes {
+    margin: 30px 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pokemon-box {
+    border-radius: 10px;
+    width: 29%;
+    margin: 20px 2%;
+    background-color: rgb(250, 250, 250);
+}
+
+.pokemon-box img {
+    width: 100%;
+}
+
+.pokemon-box p {
+    color: black;
+    font-size: 21px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+input:hover {
+    outline: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .pokemon-box {
+        width: 100%;
+        text-align: center;
+    }
+
+    .pokemon-box img {
+        max-width: 300px;
+    }
+}

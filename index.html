@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+	<head>
+		<title>Projeto</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+		
+		<!--Tags para seo-->
+		<meta name="description" content="Projeto" />
+		<meta name="keyword" content="projeto, web, design, site" />
+		<meta name="author" content="João G. Bortoletto" />
+		<!----------------->
+
+		<!--Compatibilidade-->
+		<meta http-equiv="X-AU-Compatible" content="IE-Edge" />
+		<!------------------->
+
+		<!--Estilização-->
+		<link href="css/style.css" type="text/css" rel="stylesheet" />
+		<!--------------->
+
+        <!--Icone-->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <!--------->
+
+	</head>
+
+	<body>
+        <section class="main">
+            <h2>Pokedex</h2>
+
+            <input id="amount" type="number" name="amount" placeholder="*Enter the quantity you want to view..." />
+
+            <div class="pokemon-boxes">
+
+            </div><!--pokemon-boxes-->
+        </section>
+
+        <script>
+			var amount = document.getElementById('amount');
+			amount.addEventListener('keyup', () => {
+				getPokemons(amount.value);
+			});
+
+			function getPokemons(amount) {
+				fetch('https://pokeapi.co/api/v2/pokemon?limit=' + amount).then(response => response.json()).then(allpokemon => {
+				
+					var pokemons = [];
+
+					allpokemon.results.map((val) => {
+
+						fetch(val.url).then(response => response.json()).then(pokemonSingle => {
+
+							pokemons.push({
+								name: val.name,
+								image: pokemonSingle.sprites.front_default
+							});
+
+							if (pokemons.length == amount) {
+
+								var pokemon_boxes = document.querySelector('.pokemon-boxes');
+
+								pokemon_boxes.innerHTML = "";
+
+								pokemons.map(function(val) {
+									pokemon_boxes.innerHTML += `
+									<div class="pokemon-box">
+										<img src="`+val.image+`" />
+										<p>`+val.name+`</p>
+									</div><!--pokemon-box-->`;
+								});
+							}
+						});
+					});
+				});
+			}
+		</script>
+	</body>
+</html>
