@@ -17,10 +17,13 @@ function getPokemons(amount) {
 
             fetch(val.url).then(response => response.json()).then(pokemonSingle => {
 
+                console.log(pokemonSingle);
+
                 pokemons.push({
                     name: val.name,
                     image: pokemonSingle.sprites.front_default,
-                    specie: pokemonSingle.species.name
+                    specie: pokemonSingle.species.name,
+                    weight: pokemonSingle.weight
                 });
 
                 if (pokemons.length == amount) {
@@ -31,9 +34,11 @@ function getPokemons(amount) {
 
                     pokemons.map(function(val) {
                         pokemon_boxes.innerHTML += `
-                        <div specie="`+val.specie+`" class="pokemon-box">
+                        <div class="pokemon-box">
                             <img src="`+val.image+`" />
-                            <p>`+val.name+`</p>
+                            <p>Name: `+val.name+`</p>
+                            <p>Specie: `+val.specie+`</p>
+                            <p>Weight: `+val.weight+`</p>
                         </div><!--pokemon-box-->`;
                     });
                 }
