@@ -3,6 +3,10 @@ amount.addEventListener('keyup', () => {
     getPokemons(amount.value);
 });
 
+amount.addEventListener('change', () => {
+    getPokemons(amount.value);
+})
+
 function getPokemons(amount) {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=' + amount).then(response => response.json()).then(allpokemon => {
     
